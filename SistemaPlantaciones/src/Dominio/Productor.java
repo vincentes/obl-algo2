@@ -20,7 +20,7 @@ public class Productor implements Comparable {
 		} else if(!Validar.cedula(cedula)) {
 			throw new ArgumentoInvalidoException("La cédula es inválida.", "CEDULA_INVALIDA");
 		} else if(!Validar.celular(celular)) {
-			throw new ArgumentoInvalidoException("El celular es inválida.", "CELULAR_INVALIDO");
+			throw new ArgumentoInvalidoException("El celular es inválido.", "CELULAR_INVALIDO");
 		}
 		
 		this.setCedula(cedula);

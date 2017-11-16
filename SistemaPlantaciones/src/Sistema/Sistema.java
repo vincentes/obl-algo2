@@ -3,6 +3,7 @@ package Sistema;
 import Dominio.Productor;
 import Sistema.Retorno.Resultado;
 import Utilidades.ABB;
+import Utilidades.ArgumentoInvalidoException;
 import Utilidades.Validar;
 
 public class Sistema implements ISistema {
@@ -30,8 +31,10 @@ public class Sistema implements ISistema {
 	@Override
 	public Retorno destruirSistema() {
 		Retorno ret = new Retorno();
+		//Pasamos todas las colecciones a null
+		productores = null;
 		
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
+		ret.resultado = Resultado.OK;
 		
 		return ret;
 	}
@@ -51,9 +54,28 @@ public class Sistema implements ISistema {
 			
 			
 		}
-		catch (IllegalArgumentException ex) {
+		catch (ArgumentoInvalidoException ex) {
 			System.out.println(ex.getMessage());
-			ret.resultado = Resultado.ERROR_1;
+			String valor = ex.getValor();
+			
+			switch (valor) {
+				
+				case "CEDULA_INVALIDA":
+				ret.resultado = Resultado.ERROR_1;
+				break;
+				case "CELULAR_INVALIDO":
+				ret.resultado = Resultado.ERROR_2;
+				break;
+				case "EMAIL_INVALIDO":
+				ret.resultado = Resultado.ERROR_3;
+				break;
+				default:
+				ret.resultado = Resultado.ERROR_4;
+				break;
+				
+			}
+			
+			
 		}
 		
 		
