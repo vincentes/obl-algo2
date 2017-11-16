@@ -8,7 +8,7 @@ public class ArgumentoInvalidoException extends IllegalArgumentException {
 		this.setValor(valor);
 	}
 
-	private String getValor() {
+	public String getValor() {
 		return valor;
 	}
 
