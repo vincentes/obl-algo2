@@ -1,5 +1,23 @@
 package Dominio;
 
-public class Silo {
+public class Silo extends Punto implements Comparable<Object>{
 
+	private int capacidad;
+
+	public Silo(String nombre, Double coordX, Double coordY, int capacidad) {
+		super(nombre, coordX, coordY);
+		this.capacidad = capacidad;
+	}
+
+	public int getCapacidad() {
+		return capacidad;
+	}
+
+	public void setCapacidad(int capacidad) {
+		this.capacidad = capacidad;
+	}
+	
+	
+	
+	
 }
