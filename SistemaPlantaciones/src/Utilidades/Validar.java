@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 public class Validar {
 	//Prueba
+	//Comentario de prueba
 	private static Pattern pattern;
 	private static Matcher matcher;
 	
