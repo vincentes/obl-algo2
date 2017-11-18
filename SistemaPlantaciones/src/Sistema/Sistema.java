@@ -1,14 +1,17 @@
 package Sistema;
 
+import Dominio.Ciudad;
 import Dominio.Productor;
 import Sistema.Retorno.Resultado;
 import Utilidades.ABB;
 import Utilidades.ArgumentoInvalidoException;
+import Utilidades.Grafo;
 import Utilidades.Validar;
 
 public class Sistema implements ISistema {
 	
 	private ABB productores; 
+	private Grafo puntos;
 	
 	
 
@@ -19,6 +22,7 @@ public class Sistema implements ISistema {
 		if(cantPuntos > 0)
 		{
 			productores = new ABB();
+			puntos = new Grafo(cantPuntos);
 			ret.resultado = Resultado.OK;
 		}else{
 			ret.resultado = Resultado.ERROR_1;
@@ -33,6 +37,7 @@ public class Sistema implements ISistema {
 		Retorno ret = new Retorno();
 		//Pasamos todas las colecciones a null
 		productores = null;
+		puntos = null;
 		
 		ret.resultado = Resultado.OK;
 		
@@ -86,7 +91,22 @@ public class Sistema implements ISistema {
 	public Retorno registrarCiudad(String nombre, Double coordX, Double coordY) {
 		Retorno ret = new Retorno();
 		
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
+		if(!puntos.esLleno())
+		{
+			Ciudad nueva = new Ciudad(coordX, coordY, nombre);
+			if(puntos.existeVertice(nueva)){
+				puntos.agregarVertice(nueva);
+				ret.resultado = Resultado.OK;
+			}else{
+				ret.resultado = Resultado.ERROR_2;
+			}
+			
+			
+		}else{
+			ret.resultado = Resultado.ERROR_1;
+		}
+		
+		
 		
 		return ret;
 	}
