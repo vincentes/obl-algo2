@@ -192,7 +192,14 @@ public class Sistema implements ISistema {
 	public Retorno eliminarPunto(Double coordX, Double coordY) {
 		Retorno ret = new Retorno();
 		
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
+		Punto punto = mapa.obtenerVertice(coordX, coordY);
+		
+		if(punto == null) {
+			ret.resultado = Resultado.ERROR_1;
+		} else {
+			mapa.borrarVertice(punto);
+			ret.resultado = Resultado.OK;
+		}
 		
 		return ret;
 	}
