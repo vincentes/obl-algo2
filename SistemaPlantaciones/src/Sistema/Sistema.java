@@ -1,8 +1,14 @@
 package Sistema;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import Sistema.Retorno.Resultado;
 import Utilidades.ABB;
 import Utilidades.ArgumentoInvalidoException;
+import Utilidades.GoogleMaps;
 import Utilidades.Grafo;
 import dominio.Ciudad;
 import dominio.Plantacion;
@@ -208,8 +214,13 @@ public class Sistema implements ISistema {
 	public Retorno mapaEstado() {
 		Retorno ret = new Retorno();
 		
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
-		
+		try {
+			Desktop.getDesktop().browse(GoogleMaps.generarMapa("Uruguay", mapa));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ret.resultado = Resultado.OK;
 		return ret;
 	}
 

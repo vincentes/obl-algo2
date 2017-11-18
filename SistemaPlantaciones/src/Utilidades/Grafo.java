@@ -67,6 +67,10 @@ public class Grafo {
 		return matAdy[posV1][posV2].getPeso();
 	}
 	
+	public Punto[] getPuntos() {
+		return vec;
+	}
+	
 	//Pre: existeVertice(v1) && existeVertice(v2) && !existeArista(v1,v2)	
 	public void agregarArista(Punto v1, Punto v2, int peso){
 		int posV1 = posVertice(v1);
