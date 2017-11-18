@@ -1,6 +1,6 @@
 package Utilidades;
 
-import Dominio.Punto;
+import dominio.Punto;
 import listas.Lista;
 import listas.ListaSE;
 
@@ -39,6 +39,16 @@ public class Grafo {
 			if(vec[i] != null && vec[i].equals(v1)) {
 				return true;
 			}				
+		}
+		return false;
+	}
+	
+	public boolean existenCoordenadas(Double coordX, Double coordY) 
+	{
+		for(int i = 0; i < vec.length; i++) {
+			if(vec[i] != null && vec[i].getCoordX().equals(coordX) && vec[i].getCoordY().equals(coordY)) {
+				return true;
+			}
 		}
 		return false;
 	}

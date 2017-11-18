@@ -1,19 +1,18 @@
 package Sistema;
 
-import Dominio.Ciudad;
-import Dominio.Productor;
 import Sistema.Retorno.Resultado;
 import Utilidades.ABB;
 import Utilidades.ArgumentoInvalidoException;
 import Utilidades.Grafo;
 import Utilidades.Validar;
+import dominio.Ciudad;
+import dominio.Plantacion;
+import dominio.Productor;
 
 public class Sistema implements ISistema {
 	
 	private ABB productores; 
 	private Grafo mapa;
-	
-	
 
 	@Override
 	public Retorno inicializarSistema(int cantPuntos) {
@@ -106,18 +105,28 @@ public class Sistema implements ISistema {
 			ret.resultado = Resultado.ERROR_1;
 		}
 		
-		
-		
 		return ret;
 	}
 
 	@Override
 	public Retorno registrarPlantacion(String nombre, Double coordX, Double coordY, String cedula_productor,
-			int capacidad) {
+			int produccionMensual) {
 		Retorno ret = new Retorno();
 		
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
-		
+		if(mapa.esLleno()) {
+			ret.resultado = Resultado.ERROR_1;
+		} else if(produccionMensual < 1) {
+			ret.resultado = Resultado.ERROR_2;
+		} else if(mapa.existenCoordenadas(coordX, coordY)) {
+			ret.resultado = Resultado.ERROR_3;
+		} else if(productores.buscarByCedula(cedula_productor) == null) {
+			ret.resultado = Resultado.ERROR_4;
+		} else {
+			Productor productor = productores.buscarByCedula(cedula_productor);
+			Plantacion nueva = new Plantacion(nombre, coordX, coordY, productor, null, produccionMensual);
+			mapa.agregarVertice(nueva);
+			ret.resultado = Resultado.OK;
+		}
 		return ret;
 	}
 

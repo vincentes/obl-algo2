@@ -1,6 +1,6 @@
 package Sistema;
 
-import Dominio.Productor;
+import dominio.Productor;
 
 public class SistemaPlantaciones {
 

@@ -1,6 +1,6 @@
 package Utilidades;
 
-import Dominio.Punto;
+import dominio.Punto;
 
 public class NodoABB implements Comparable<Object>{
 	private Comparable dato;

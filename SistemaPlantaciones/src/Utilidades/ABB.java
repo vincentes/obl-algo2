@@ -2,6 +2,8 @@ package Utilidades;
 
 import java.util.Comparator;
 
+import dominio.Productor;
+
 public class ABB {
 	private NodoABB raiz;
 
@@ -171,5 +173,30 @@ public class ABB {
 				borrarRec(nodo.getDer(), dato);
 		}
 	}
+
+	public Productor buscarByCedula(String cedula_productor) {
+		NodoABB busqueda = buscarByCedulaRec(raiz, cedula_productor);
+		if(busqueda == null) {
+			return null;
+		}
+		return (Productor) busqueda.getDato();
+	}
+	
+	public NodoABB buscarByCedulaRec(NodoABB nodo, String cedula_productor) {
+	    if(nodo != null){
+	    	Productor productor = (Productor) nodo.getDato();
+	        if(productor.getCedula().equals(cedula_productor)) {
+	           return nodo;
+	        } else {
+	            NodoABB foundNode = buscarByCedulaRec(nodo.getIzq(), cedula_productor);
+	            if(foundNode == null) {
+	                foundNode = buscarByCedulaRec(nodo.getDer(), cedula_productor);
+	            }
+	            return foundNode;
+	         }
+	    }
+		return null;
+	}
+	
 	
 }
