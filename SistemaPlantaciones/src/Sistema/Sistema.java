@@ -173,7 +173,17 @@ public class Sistema implements ISistema {
 	public Retorno eliminarTramo(Double coordXi, Double coordYi, Double coordXf, Double coordYf) {
 		Retorno ret = new Retorno();
 		
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
+		Punto i = mapa.obtenerVertice(coordXi, coordYi);
+		Punto y = mapa.obtenerVertice(coordXi, coordYi);
+		
+		if(!mapa.existenCoordenadas(coordXi, coordYi) || !mapa.existenCoordenadas(coordXf, coordYf)) {
+			ret.resultado = Resultado.ERROR_1;
+		} else if(!mapa.existeArista(i, y)) {
+			ret.resultado = Resultado.ERROR_2;
+		} else {
+			mapa.borrarArista(i , y);
+			ret.resultado = Resultado.OK;
+		}
 		
 		return ret;
 	}
