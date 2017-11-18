@@ -35,9 +35,11 @@ public class Grafo {
 
 	public boolean existeVertice(Punto v1)
 	{
-		for (int i = 0; i < vec.length; i++)
-			if(vec[i].equals(v1))
+		for (int i = 0; i < vec.length; i++) {
+			if(vec[i] != null && vec[i].equals(v1)) {
 				return true;
+			}				
+		}
 		return false;
 	}
 	
