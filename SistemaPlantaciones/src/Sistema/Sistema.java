@@ -4,10 +4,10 @@ import Sistema.Retorno.Resultado;
 import Utilidades.ABB;
 import Utilidades.ArgumentoInvalidoException;
 import Utilidades.Grafo;
-import Utilidades.Validar;
 import dominio.Ciudad;
 import dominio.Plantacion;
 import dominio.Productor;
+import dominio.Punto;
 import dominio.Silo;
 
 public class Sistema implements ISistema {
@@ -153,8 +153,19 @@ public class Sistema implements ISistema {
 	public Retorno registrarTramo(Double coordXi, Double coordYi, Double coordXf, Double coordYf, int peso) {
 		Retorno ret = new Retorno();
 		
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
+		Punto i = mapa.obtenerVertice(coordXi, coordYi);
+		Punto y = mapa.obtenerVertice(coordXi, coordYi);
 		
+		if(peso <= 0) {
+			ret.resultado = Resultado.ERROR_1;
+		} else if(!mapa.existenCoordenadas(coordXi, coordYi) || !mapa.existenCoordenadas(coordXf, coordYf)) {
+			ret.resultado = Resultado.ERROR_2;
+		} else if(mapa.existeArista(i, y)) {
+			ret.resultado = Resultado.ERROR_3;
+		} else {
+			mapa.agregarArista(i, y, peso);
+			ret.resultado = Resultado.OK;
+		}
 		return ret;
 	}
 

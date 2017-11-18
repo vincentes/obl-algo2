@@ -148,4 +148,13 @@ public class Grafo {
 				return i;
 		return -1;
 	}
+
+	public Punto obtenerVertice(Double coordXi, Double coordYi) {
+		for(int i = 0; i < vec.length; i++) {
+			if(vec[i] != null && vec[i].getCoordX().equals(coordXi) && vec[i].getCoordY().equals(coordYi)) {
+				return vec[i];
+			}
+		}
+		return null;
+	}
 }
