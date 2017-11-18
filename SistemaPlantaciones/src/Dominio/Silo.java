@@ -1,6 +1,6 @@
 package Dominio;
 
-public class Silo extends Punto implements Comparable<Object>{
+public class Silo extends Punto{
 
 	private int capacidad;
 

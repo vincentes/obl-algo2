@@ -1,6 +1,6 @@
 package Dominio;
 
-public class Plantacion extends Punto implements Comparable<Object>{
+public class Plantacion extends Punto{
 	private Propietario propietario;
 	private TipoPlantacion tipo;
 	private int produccionMensual;

@@ -5,7 +5,7 @@ import java.util.Comparator;
 import Utilidades.ArgumentoInvalidoException;
 import Utilidades.Validar;
 
-public class Productor implements Comparable {
+public class Productor implements Comparable<Object>{
 	private String cedula;
 	private String nombre;
 	private String direccion;
@@ -41,7 +41,6 @@ public class Productor implements Comparable {
 	}
 
 
-	@Override
 	public int compareTo(Object o) {
 		return cedula.compareTo(((Productor) o).getCedula());
 	}	

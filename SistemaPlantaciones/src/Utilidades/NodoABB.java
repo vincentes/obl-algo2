@@ -1,6 +1,8 @@
 package Utilidades;
 
-public class NodoABB {
+import Dominio.Punto;
+
+public class NodoABB implements Comparable<Object>{
 	private Comparable dato;
 	private NodoABB izq;
 	private NodoABB der;
@@ -37,6 +39,11 @@ public class NodoABB {
 
 	public NodoABB(Comparable dato) {
 		this.dato = dato;
+	}
+
+	@Override
+	public int compareTo(Object nodo) {
+		return dato.compareTo(((NodoABB)nodo).getDato());
 	}
 
 }

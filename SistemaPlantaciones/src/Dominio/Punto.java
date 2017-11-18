@@ -1,6 +1,6 @@
 package Dominio;
 
-public class Punto{
+public class Punto  implements Comparable<Object>{
 	private Double coordX;
 	private Double coordY;
 	private String nombre;
