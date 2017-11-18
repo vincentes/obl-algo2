@@ -8,6 +8,7 @@ import Utilidades.Validar;
 import dominio.Ciudad;
 import dominio.Plantacion;
 import dominio.Productor;
+import dominio.Silo;
 
 public class Sistema implements ISistema {
 	
@@ -131,11 +132,20 @@ public class Sistema implements ISistema {
 	}
 
 	@Override
-	public Retorno registrarSilo(String nombre, Double coordX, Double coordY, int capacidad) {
+	public Retorno registrarSilo(String nombre, Double coordX, Double coordY, int produccionMensual) {
 		Retorno ret = new Retorno();
 		
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
-		
+		if(mapa.esLleno()) {
+			ret.resultado = Resultado.ERROR_1;
+		} else if(produccionMensual < 1) {
+			ret.resultado = Resultado.ERROR_2;
+		} else if(mapa.existenCoordenadas(coordX, coordY)) {
+			ret.resultado = Resultado.ERROR_3;
+		} else {
+			Silo silo = new Silo(nombre, coordX, coordY, produccionMensual);
+			mapa.agregarVertice(silo);
+			ret.resultado = Resultado.OK;
+		}
 		return ret;
 	}
 
