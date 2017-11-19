@@ -217,8 +217,9 @@ public class ISistemaTest {
 		
 		r = sis.listadoDeSilos();
 		assertEquals(Retorno.Resultado.OK, r.resultado);
-		assertEquals("", r.valorString);
-		
+		//assertEquals("", r.valorString);
+		//Estaba mal, debería ser:
+		assertEquals("12.11;13.11;200;200|22.11;23.11;300;300|32.11;33.11;400;400|42.11;43.11;500;500|52.11;53.11;600;600", r.valorString);
 	}
 
 	@Test

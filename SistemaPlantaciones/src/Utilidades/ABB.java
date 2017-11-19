@@ -6,7 +6,8 @@ import dominio.Productor;
 
 public class ABB {
 	private NodoABB raiz;
-
+	private String msg;
+	
 	public ABB() {
 		//this.raiz = null;
 	}
@@ -55,6 +56,13 @@ public class ABB {
 		return min;
 	}
 	
+	public String listarAscendenteString()
+	{
+		msg ="";
+		listarAscendenteAuxString(raiz);
+		return Validar.cortarUltimo(msg);
+	}
+	
 	public void listarAscendente()
 	{
 		listarAscendenteAux(raiz);
@@ -65,11 +73,25 @@ public class ABB {
 		listarDescendenteAux(raiz);
 	}
 
+	private void listarAscendenteAuxString(NodoABB nodo) {
+	
+		if(nodo != null)
+		{
+			listarAscendenteAuxString(nodo.getIzq());
+			msg+= nodo.getDato().toString();
+			listarAscendenteAuxString(nodo.getDer());
+			
+		}
+		
+		
+		
+	}
+	
 	private void listarAscendenteAux(NodoABB nodo) {
 		if(nodo != null)
 		{
 			listarAscendenteAux(nodo.getIzq());
-			System.out.println(nodo.getDato());
+			System.out.print(nodo.getDato());
 			listarAscendenteAux(nodo.getDer());
 		}
 	}

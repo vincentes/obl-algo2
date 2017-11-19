@@ -30,6 +30,10 @@ public class Punto  implements Comparable<Object>{
 		this.coordY = coordY;
 	}
 	
+	public String getStringCoord(){
+		return coordX + ";" + coordY;
+	}
+	
 	public int compareTo(Object o) {
 		if(coordX == ((Punto)o).getCoordX()){
 			return coordY.compareTo(((Punto)o).getCoordY());

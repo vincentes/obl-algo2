@@ -10,6 +10,7 @@ import Utilidades.ABB;
 import Utilidades.ArgumentoInvalidoException;
 import Utilidades.GoogleMaps;
 import Utilidades.Grafo;
+import Utilidades.Validar;
 import dominio.Ciudad;
 import dominio.Plantacion;
 import dominio.Productor;
@@ -117,12 +118,12 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno registrarPlantacion(String nombre, Double coordX, Double coordY, String cedula_productor,
-			int produccionMensual) {
+			int capacidad) {
 		Retorno ret = new Retorno();
 		
 		if(mapa.esLleno()) {
 			ret.resultado = Resultado.ERROR_1;
-		} else if(produccionMensual < 1) {
+		} else if(capacidad < 1) {
 			ret.resultado = Resultado.ERROR_2;
 		} else if(mapa.existenCoordenadas(coordX, coordY)) {
 			ret.resultado = Resultado.ERROR_3;
@@ -130,7 +131,7 @@ public class Sistema implements ISistema {
 			ret.resultado = Resultado.ERROR_4;
 		} else {
 			Productor productor = productores.buscarByCedula(cedula_productor);
-			Plantacion nueva = new Plantacion(nombre, coordX, coordY, productor, null, produccionMensual);
+			Plantacion nueva = new Plantacion(nombre, coordX, coordY, productor, null, capacidad);
 			mapa.agregarVertice(nueva);
 			ret.resultado = Resultado.OK;
 		}
@@ -138,17 +139,17 @@ public class Sistema implements ISistema {
 	}
 
 	@Override
-	public Retorno registrarSilo(String nombre, Double coordX, Double coordY, int produccionMensual) {
+	public Retorno registrarSilo(String nombre, Double coordX, Double coordY, int capacidad) {
 		Retorno ret = new Retorno();
 		
 		if(mapa.esLleno()) {
 			ret.resultado = Resultado.ERROR_1;
-		} else if(produccionMensual < 1) {
+		} else if(capacidad < 1) {
 			ret.resultado = Resultado.ERROR_2;
 		} else if(mapa.existenCoordenadas(coordX, coordY)) {
 			ret.resultado = Resultado.ERROR_3;
 		} else {
-			Silo silo = new Silo(nombre, coordX, coordY, produccionMensual);
+			Silo silo = new Silo(nombre, coordX, coordY, capacidad);
 			mapa.agregarVertice(silo);
 			ret.resultado = Resultado.OK;
 		}
@@ -160,7 +161,9 @@ public class Sistema implements ISistema {
 		Retorno ret = new Retorno();
 		
 		Punto i = mapa.obtenerVertice(coordXi, coordYi);
-		Punto y = mapa.obtenerVertice(coordXi, coordYi);
+		//Estabas generando dos puntos con las mismas coordenadas?
+		//Punto y = mapa.obtenerVertice(coordXi, coordYi);
+		Punto y = mapa.obtenerVertice(coordXf, coordYf);
 		
 		if(peso <= 0) {
 			ret.resultado = Resultado.ERROR_1;
@@ -180,7 +183,9 @@ public class Sistema implements ISistema {
 		Retorno ret = new Retorno();
 		
 		Punto i = mapa.obtenerVertice(coordXi, coordYi);
-		Punto y = mapa.obtenerVertice(coordXi, coordYi);
+		//Estabas generando dos puntos con las mismas coordenadas?
+		//Punto y = mapa.obtenerVertice(coordXi, coordYi);
+		Punto y = mapa.obtenerVertice(coordXf, coordYf);
 		
 		if(!mapa.existenCoordenadas(coordXi, coordYi) || !mapa.existenCoordenadas(coordXf, coordYf)) {
 			ret.resultado = Resultado.ERROR_1;
@@ -246,7 +251,17 @@ public class Sistema implements ISistema {
 	public Retorno listadoDeSilos() {
 		Retorno ret = new Retorno();
 		
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
+		String msg ="";
+		for(int i=0; i<mapa.getPuntos().length;i++)
+		{
+			Punto aux = mapa.getPuntos()[i];
+			if(aux instanceof Silo) msg+= ((Silo) aux).getDatos();
+		}
+		
+		if(msg.length() > 0) msg = Validar.cortarUltimo(msg);
+		
+		ret.resultado = Resultado.OK;
+		ret.valorString = msg;
 		
 		return ret;
 	}
@@ -255,7 +270,10 @@ public class Sistema implements ISistema {
 	public Retorno listadoProductores() {
 		Retorno ret = new Retorno();
 		
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
+		//System.out.println("Test:" + productores.listarAscendenteString());
+		
+		ret.resultado = Resultado.OK;
+		ret.valorString = productores.listarAscendenteString();
 		
 		return ret;
 	}

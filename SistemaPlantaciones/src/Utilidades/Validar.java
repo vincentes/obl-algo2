@@ -36,6 +36,10 @@ public static boolean celular(String dato) {
 		return matcher.matches();
 
 	}
+	
+	public static String cortarUltimo(String msg){
+		return msg.substring(0, msg.length()-1);
+	}
 
 	
 

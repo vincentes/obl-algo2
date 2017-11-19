@@ -43,7 +43,15 @@ public class Productor implements Comparable<Object>{
 
 	public int compareTo(Object o) {
 		return cedula.compareTo(((Productor) o).getCedula());
+	}
+
+
+	@Override
+	public String toString() {
+		return cedula + ";" + nombre + ";" + celular + "|";
 	}	
+	
+	
 	
 
 }
