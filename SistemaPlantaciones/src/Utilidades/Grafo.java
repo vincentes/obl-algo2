@@ -1,6 +1,7 @@
 package Utilidades;
 
 import dominio.Punto;
+import dominio.Silo;
 import listas.Lista;
 import listas.ListaSE;
 
@@ -142,6 +143,107 @@ public class Grafo {
 	}
 	
 	
+	public Lista<Punto> caminoMasCorto(int origen, int destino) {
+		int[] dist = new int[tope];
+	    boolean[] vis = new boolean[tope];
+	    int[] ant = new int[tope];
+	    for(int i = 0; i < tope; i++) {
+	    	dist[i] = Integer.MAX_VALUE;
+	    	ant[i] = -1;
+	    }
+	    
+	    dist[origen] = 0;
+	    vis[origen] = true;
+	    for(int i = 0; i < tope; i++) {
+	    	if(matAdy[origen][i].isExiste()) {
+	    		dist[i] = matAdy[origen][i].getPeso();
+	    		ant[i] = origen;
+	    	}
+	    }
+	    
+	    for(int k = 1; k < tope; k++) {
+	    	int min = Integer.MAX_VALUE;
+	    	int cand = -1;
+	    	for(int i = 0; i < tope; i++) {
+	    		if(dist[i] < min && !vis[i]) {
+	    			min = dist[i];
+	    			cand = i;
+	    		}
+	    	}
+	    
+	    	if(cand == -1) {
+	    		break;
+	    	}
+	    	
+	    	vis[cand] = true;
+	    	for(int i = 0; i < tope; i++) {
+	    		int pasoFinal = matAdy[cand][i].getPeso();
+	    		if(matAdy[cand][i].isExiste() && !vis[i] && dist[cand] + pasoFinal < dist[i]) {
+	    			dist[i] = dist[cand] + pasoFinal;
+	    			ant[i] = cand;
+	    		}
+	    	}
+	    }
+	    
+	    Lista<Punto> recorrido = new ListaSE<Punto>();
+	    for(int i = 0; i < vis.length; i++) {
+	    	recorrido.insertar(vec[i]);
+	    }
+	    
+	    return recorrido;
+	    
+	}
+	
+	public int distanciaMasCorta(int origen, int destino) {
+		int[] dist = new int[tope];
+	    boolean[] vis = new boolean[tope];
+	    int[] ant = new int[tope];
+	    for(int i = 0; i < tope; i++) {
+	    	dist[i] = Integer.MAX_VALUE;
+	    	ant[i] = -1;
+	    }
+	    
+	    dist[origen] = 0;
+	    vis[origen] = true;
+	    for(int i = 0; i < tope; i++) {
+	    	if(matAdy[origen][i].isExiste()) {
+	    		dist[i] = matAdy[origen][i].getPeso();
+	    		ant[i] = origen;
+	    	}
+	    }
+	    
+	    for(int k = 1; k < tope; k++) {
+	    	int min = Integer.MAX_VALUE;
+	    	int cand = -1;
+	    	for(int i = 0; i < tope; i++) {
+	    		if(dist[i] < min && !vis[i]) {
+	    			min = dist[i];
+	    			cand = i;
+	    		}
+	    	}
+	    
+	    	if(cand == -1) {
+	    		break;
+	    	}
+	    	
+	    	vis[cand] = true;
+	    	for(int i = 0; i < tope; i++) {
+	    		int pasoFinal = matAdy[cand][i].getPeso();
+	    		if(matAdy[cand][i].isExiste() && !vis[i] && dist[cand] + pasoFinal < dist[i]) {
+	    			dist[i] = dist[cand] + pasoFinal;
+	    			ant[i] = cand;
+	    		}
+	    	}
+	    }
+	    
+	    // No se encontro camino
+	    if(dist[destino] == Integer.MAX_VALUE) {
+	    	return -1;
+	    }
+	    
+	    return dist[destino];
+	}
+	
 	
 	//Pre: !existeArista
 	private int posVertice(Punto vertice)
@@ -160,5 +262,42 @@ public class Grafo {
 			}
 		}
 		return null;
+	}
+
+	public Lista<Silo> silos() {
+		Lista<Silo> silos = new ListaSE<Silo>();
+		for(int i = 0; i < vec.length; i++) {
+			if(vec[i] instanceof Silo) {
+				silos.insertar((Silo) vec[i]);
+			}
+		}
+		return silos;
+	}
+	
+	public int indice(Punto punto) {
+		for(int i = 0; i < vec.length; i++) {
+			if(vec[i] != null && vec[i].equals(punto)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public Silo siloMasCercano(Double coordX, Double coordY) {
+		int distanciaMasCorta = Integer.MAX_VALUE;
+		Silo siloMasCerca = null;
+		Punto origen = obtenerVertice(coordX, coordY);
+		for(Silo silo : silos()) {
+			int distanciaSilo = distanciaMasCorta(indice(origen), indice(silo));
+			if(distanciaSilo == -1) {
+				continue;
+			}
+			
+			if(distanciaSilo < distanciaMasCorta) {
+				distanciaMasCorta = distanciaSilo;
+				siloMasCerca = silo;
+			}
+		}
+		return siloMasCerca;
 	}
 }

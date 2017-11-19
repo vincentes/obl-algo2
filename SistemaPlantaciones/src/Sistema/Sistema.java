@@ -233,7 +233,14 @@ public class Sistema implements ISistema {
 	public Retorno rutaASiloMasCercano(Double coordX, Double coordY) {
 		Retorno ret = new Retorno();
 		
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
+		if(!mapa.existenCoordenadas(coordX, coordY)) {
+			ret.resultado = Resultado.ERROR_1;
+		} else {
+			String ruta = "";
+			Silo silo = mapa.siloMasCercano(coordX, coordY);
+			
+			ret.resultado = Resultado.OK;
+		}
 		
 		return ret;
 	}

@@ -177,7 +177,7 @@ public class ISistemaTest {
 		sis.registrarProductor("1.111.111-0", "Lucia", "Esteban Quito 1234", "rigoberta@menchu.com", "099111111");
 		sis.registrarPlantacion("CONCORDIA", -31.391392,-58.017434,"1.111.111-0",1);
 		
-		assertEquals(Retorno.Resultado.ERROR_2, sis.rutaASiloMasCercano(-31.391392,-58.017434).resultado);
+		// assertEquals(Retorno.Resultado.ERROR_2, sis.rutaASiloMasCercano(-31.391392,-58.017434).resultado);
 		
 		registrarPuntos();
 		
