@@ -5,8 +5,8 @@ public class Arco {
 	private boolean existe;
 
 	public Arco() {
-//		this.peso = 0;
-//		this.existe = false;
+		this.peso = 0;
+		this.existe = false;
 	}
 
 	public Arco(int peso) {

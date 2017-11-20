@@ -26,6 +26,10 @@ public class Grafo {
 		
 	}
 	
+	public Arco[][] getMatriz(){
+		return matAdy;
+	}
+	
 	public boolean esVacio(){
 		return contador == 0;
 	}

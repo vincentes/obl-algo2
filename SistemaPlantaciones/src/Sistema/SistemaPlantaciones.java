@@ -9,9 +9,11 @@ public class SistemaPlantaciones {
 		//Pruebas:
 		
 				String sep ="";
-				for(int i=0; i<120;i++){
+				for(int i=0; i<140;i++){
 					sep+="*";
 				}
+				
+				sep = "\n"+ sep + "\n"+ sep + "\n";
 				
 				
 				
@@ -19,10 +21,10 @@ public class SistemaPlantaciones {
 				System.out.println(sep);
 				System.out.println("Iniciamos Sistema:");
 				System.out.println(sep);
-				System.out.println("(Valor -10 se espera ERROR 1): " + 
+				System.out.println("(Cantidad de puntos: -10, se espera ERROR 1): " + 
 						s.inicializarSistema(-10).resultado.toString()
 						);
-				System.out.println("(Valor 10 se espera OK): " +
+				System.out.println("(Cantidad de puntos: 10, se espera OK): " +
 						s.inicializarSistema(10).resultado.toString()
 						);
 				
@@ -41,34 +43,46 @@ public class SistemaPlantaciones {
 				System.out.println("Iniciamos Sistema con cant puntos = 9, se espera OK): " +
 						s.inicializarSistema(9).resultado.toString()
 						);
-				
+				System.out.println("");
+				System.out.println("1.234.567-1, Productor 1, Dirección Prod 1, prod1@productores.com, 099123456");
 				System.out.println("(Datos correctos, se espera OK): " +
 						s.registrarProductor("1.234.567-1", "Productor 1", "Dirección Prod 1", "prod1@productores.com", "099123456").resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("2.234.567-1, Productor 2, Dirección Prod 2, prod2@productores.com, 099223456");
 				System.out.println("(Datos correctos, se espera OK): " +
 						s.registrarProductor("2.234.567-1", "Productor 2", "Dirección Prod 2", "prod2@productores.com", "099223456").resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("3.234.567-1, Productor 3, Dirección Prod 3, prod31@productores.com, 099323456");
 				System.out.println("(Datos correctos, se espera OK): " +
 						s.registrarProductor("3.234.567-1", "Productor 3", "Dirección Prod 3", "prod3@productores.com", "099323456").resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("0.234.567-1, Productor 0, Dirección Prod 0, prod0@productores.com, 099023456");
 				System.out.println("(Datos correctos, se espera OK): " +
 						s.registrarProductor("0.234.567-1", "Productor 0", "Dirección Prod 0", "prod0@productores.com", "099023456").resultado.toString()
 						);
 				
 				
-				System.out.println("");
 				
+				System.out.println("");
+				System.out.println("1234.567-1, Productor 1, Dirección Prod 1, prod1@productores.com, 099123456");
 				System.out.println("(Productor de Cédula inválida, se espera ERROR 1): " +
 						s.registrarProductor("1234.567-1", "Productor 1", "Dirección Prod 1", "prod1@productores.com", "099123456").resultado.toString()
 						);
 				System.out.println("");
+				System.out.println("2.234.567-1, Productor 1, Dirección Prod 1, prod1@productores.com, 499123456");
 				System.out.println("(Productor de Celular inválido, se espera ERROR 2): " +
 						s.registrarProductor("2.234.567-1", "Productor 1", "Dirección Prod 1", "prod1@productores.com", "499123456").resultado.toString()
 						);
 				System.out.println("");
+				System.out.println("2.234.567-1, Productor 1, Dirección Prod 1, prod1productores.com, 099123456");
 				System.out.println("(Productor de Email inválido, se espera ERROR 3): " +
 						s.registrarProductor("2.234.567-1", "Productor 1", "Dirección Prod 1", "prod1productores.com", "099123456").resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("1.234.567-1, Productor 1, Dirección Prod 1, prod1@productores.com, 099123456");
 				System.out.println("(Productor Repetido, se espera ERROR 4): " +
 						s.registrarProductor("1.234.567-1", "Productor 1", "Dirección Prod 1", "prod1@productores.com", "099123456").resultado.toString()
 						);
@@ -76,15 +90,23 @@ public class SistemaPlantaciones {
 				System.out.println(sep);
 				System.out.println("Registramos Ciudades:");
 				System.out.println(sep);
+				System.out.println("");
+				System.out.println("MONTEVIDEO, -34.901113,-56.164531");
 				System.out.println("(Datos correctos, se espera OK): " +
 						s.registrarCiudad("MONTEVIDEO", -34.901113,-56.164531).resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("MONTEVIDEO, -34.901113,-56.164531");
 				System.out.println("(Ya existe un punto con esas coordenadas, se espera ERROR 2): " +
 						s.registrarCiudad("MONTEVIDEO-2", -34.901113,-56.164531).resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("TRINIDAD, -33.520142,-56.904220");
 				System.out.println("(Datos correctos, se espera OK): " +
 						s.registrarCiudad("TRINIDAD", -33.520142,-56.904220).resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("COLONIA, -34.460719,-57.83391");
 				System.out.println("(Datos correctos, se espera OK): " +
 						s.registrarCiudad("COLONIA", -34.460719,-57.83391).resultado.toString()
 						);
@@ -95,21 +117,33 @@ public class SistemaPlantaciones {
 				System.out.println("Registramos Plantaciones:");
 				System.out.println(sep);
 			
-				System.out.println("(capacidad < 0, se espera ERROR 2): " +
+				System.out.println("");
+				System.out.println("CANELONES, -34.901113,-56.164531,1.234.567-1, -3");
+				System.out.println("(capacidad <= 0, se espera ERROR 2): " +
 						s.registrarPlantacion("CANELONES", -34.901113,-56.164531,"1.234.567-1", -3).resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("MONTEVIDEO-2, -34.901113,-56.164531,1.234.567-1, 4");
 				System.out.println("(Ya existe un punto con esas coordenadas, se espera ERROR 3): " +
 						s.registrarPlantacion("MONTEVIDEO-2", -34.901113,-56.164531,"1.234.567-1", 4).resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("MONTEVIDEO-2, -34.901113,-56.164531,1.111.111-1, 4");
 				System.out.println("(No existe un productor con esa cédula, se espera ERROR 4): " +
 						s.registrarPlantacion("MONTEVIDEO-2", -35.901113,-54.164531,"1.111.111-1", 4).resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("YOUNG, -32.702193,-57.638238,1.234.567-1,150");
 				System.out.println("(Datos correctos, se espera OK): " +
 						s.registrarPlantacion("YOUNG", -32.702193,-57.638238,"1.234.567-1",150).resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("TOLEDO, -34.7383897,-56.1098602,2.234.567-1,150");
 				System.out.println("(Datos correctos, se espera OK): " +
 						s.registrarPlantacion("TOLEDO", -34.7383897,-56.1098602,"2.234.567-1",150).resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("VILLA DEL CARMEN, -33.2402962,-56.0255258,3.234.567-1,150");
 				System.out.println("(Datos correctos, se espera OK): " +
 						s.registrarPlantacion("VILLA DEL CARMEN", -33.2402962,-56.0255258,"3.234.567-1",150).resultado.toString()
 						);
@@ -118,18 +152,28 @@ public class SistemaPlantaciones {
 				System.out.println("Registramos Silos:");
 				System.out.println(sep);
 			
+				System.out.println("");
+				System.out.println("CANELONES, -33.901113,-54.164531, -3");
 				System.out.println("(capacidad < 0, se espera ERROR 2): " +
 						s.registrarSilo("CANELONES", -33.901113,-54.164531, -3).resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("MONTEVIDEO-2, -34.901113,-56.164531, 4");
 				System.out.println("(Ya existe un punto con esas coordenadas, se espera ERROR 3): " +
 						s.registrarSilo("MONTEVIDEO-2", -34.901113,-56.164531, 4).resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("ISMAEL CORTINAS, -33.9616565,-57.0951748,150");
 				System.out.println("(Datos correctos, se espera OK): " +
 						s.registrarSilo("ISMAEL CORTINAS", -33.9616565,-57.0951748,150).resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("CONCHILLAS, -34.164144,-58.034204,200");
 				System.out.println("(Datos correctos, se espera OK): " +
 						s.registrarSilo("CONCHILLAS", -34.164144,-58.034204,200).resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("SARANDI GRANDE, -33.725648,-56.329281,250");
 				System.out.println("(Datos correctos, se espera OK): " +
 						s.registrarSilo("SARANDI GRANDE", -33.725648,-56.329281,250).resultado.toString()
 						);
@@ -262,11 +306,38 @@ public class SistemaPlantaciones {
 				System.out.println("Ventana del navegador");
 				s.mapaEstado();
 				
+				System.out.println(sep);
+				System.out.println("Mejor ruta a silo:");
+				System.out.println(sep);
+				System.out.println("TODO\n");
+				
+				System.out.println(sep);
+				System.out.println("Listado de plantaciones en ciudad:");
+				System.out.println(sep);
+				System.out.println("TODO\n");
+				
+				System.out.println(sep);
+				System.out.println("Listado de silos:");
+				System.out.println(sep);
+				System.out.println("(No hay error posible, se espera OK): " +
+						s.listadoDeSilos().resultado.toString());
+				System.out.println("Retorno esperado:");
+				System.out.println("-33.9616565;-57.0951748;150;150|-33.725648;-56.329281;250;250");
+				 
+				System.out.println("Retorno obtenido:");
+				System.out.println(s.listadoDeSilos().valorString);
+				
+				
 				
 				
 				System.out.println(sep);
 				System.out.println("Listamos los productores de manera ascendente:");
 				System.out.println(sep);
+				System.out.println("(No hay error posible, se espera OK): " +
+						s.listadoProductores().resultado.toString());
+				System.out.println("Retorno esperado:");
+				System.out.println("0.234.567-1;Productor 0;099023456|1.234.567-1;Productor 1;099123456|2.234.567-1;Productor 2;099223456|3.234.567-1;Productor 3;099323456");
+				System.out.println("Retorno obtenido:");
 				System.out.println(s.listadoProductores().valorString);
 				System.out.println(sep);
 				

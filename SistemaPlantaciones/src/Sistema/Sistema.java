@@ -67,7 +67,7 @@ public class Sistema implements ISistema {
 			
 		}
 		catch (ArgumentoInvalidoException ex) {
-			System.out.println(ex.getMessage());
+			//System.out.println(ex.getMessage());
 			String valor = ex.getValor();
 			
 			switch (valor) {
@@ -261,8 +261,10 @@ public class Sistema implements ISistema {
 		String msg ="";
 		for(int i=0; i<mapa.getPuntos().length;i++)
 		{
+			
 			Punto aux = mapa.getPuntos()[i];
-			if(aux instanceof Silo) msg+= ((Silo) aux).getDatos();
+			if(aux != null && aux instanceof Silo) msg+= ((Silo) aux).getDatos();
+			
 		}
 		
 		if(msg.length() > 0) msg = Validar.cortarUltimo(msg);

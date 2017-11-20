@@ -46,6 +46,23 @@ public class ListaSE<T> extends Lista<T>{
 			agregarEnPosKRec(k-1, dato, nodo.getSig());
 	}
 	
+	public boolean contiene(T dato){
+		
+		if(inicio != null){
+			NodoLista aux = inicio;
+			while(aux!=null){
+				if(aux.getDato().equals(dato))
+				{
+					//System.out.println("Contiene");
+					return true;	
+			}
+				aux = aux.getSig();
+		}
+		}
+		//System.out.println("No Contiene");
+		return false;
+	}
+	
 	//Pre: largo!=0
 	public void borrarPpio(){
 		inicio = inicio.getSig();
@@ -68,6 +85,7 @@ public class ListaSE<T> extends Lista<T>{
 	@Override
 	public void insertar(T dato) {
 		agregarFin(dato);
+		//System.out.println("Se insertó" + dato.toString());
 	}
 
 	@Override
@@ -91,8 +109,18 @@ public class ListaSE<T> extends Lista<T>{
 		return mostrarLista();
 	}
 
-	private String mostrarLista() {
-		return "NOOOO NODOLISTACAMION NOOOOOO";
+	public String mostrarLista() {
+		String ret ="";
+		if(inicio != null){
+			NodoLista aux = inicio;
+			while(aux!=null){
+				ret += aux.getDato().toString();
+				aux = aux.getSig();
+			}
+			
+		}
+		return ret;
+		
 	}
 
 	@Override

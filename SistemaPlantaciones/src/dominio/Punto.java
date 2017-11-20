@@ -71,6 +71,11 @@ public class Punto  implements Comparable<Object>{
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Punto [nombre=" + nombre + "]";
+	}
+	
 	
 	
 	
