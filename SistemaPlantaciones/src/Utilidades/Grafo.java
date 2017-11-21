@@ -1,8 +1,12 @@
 package Utilidades;
 
+import java.util.Comparator;
+
+import dominio.Plantacion;
 import dominio.Punto;
 import dominio.Silo;
 import listas.Lista;
+import listas.ListaOrd;
 import listas.ListaSE;
 
 public class Grafo {
@@ -82,6 +86,8 @@ public class Grafo {
 		int posV2 = posVertice(v2);
 		matAdy[posV1][posV2].setExiste(true);
 		matAdy[posV1][posV2].setPeso(peso);
+		matAdy[posV2][posV1].setExiste(true);
+		matAdy[posV2][posV1].setPeso(peso);
 	}
 	
 	//Pre: existeVertice(v1) && existeVertice(v2) && existeArista(v1,v2)
@@ -185,16 +191,32 @@ public class Grafo {
 	    		if(matAdy[cand][i].isExiste() && !vis[i] && dist[cand] + pasoFinal < dist[i]) {
 	    			dist[i] = dist[cand] + pasoFinal;
 	    			ant[i] = cand;
+	    			
 	    		}
 	    	}
 	    }
 	    
-	    Lista<Punto> recorrido = new ListaSE<Punto>();
-	    for(int i = 0; i < vis.length; i++) {
-	    	recorrido.insertar(vec[i]);
+	    Punto[] recorrido = new Punto[5];
+	    recorrido[0] = vec[destino];
+	    int counter = ant[destino];
+	    int i = 1;
+	    while(!(vec[counter].equals(vec[origen]))) {
+	    	recorrido[i] = vec[counter];
+	    	counter = ant[counter];
+	    	i++;
+	    }
+	    recorrido[i] = vec[origen];
+	    
+	    Lista<Punto> retorno = new ListaSE<Punto>();
+	    for(int j = recorrido.length - 1; j > -1; j--) {
+	    	if(recorrido[j] == null) {
+	    		continue;
+	    	}
+	    	
+	    	retorno.insertar(recorrido[j]);
 	    }
 	    
-	    return recorrido;
+	    return retorno;
 	    
 	}
 	
@@ -202,10 +224,7 @@ public class Grafo {
 		int[] dist = new int[tope];
 	    boolean[] vis = new boolean[tope];
 	    int[] ant = new int[tope];
-	    for(int i = 0; i < tope; i++) {
-	    	dist[i] = Integer.MAX_VALUE;
-	    	ant[i] = -1;
-	    }
+	    for(int i=0; i<tope; dist[i] = Integer.MAX_VALUE, ant[i++] = -1);
 	    
 	    dist[origen] = 0;
 	    vis[origen] = true;
@@ -287,11 +306,14 @@ public class Grafo {
 		return -1;
 	}
 	
-	public Silo siloMasCercano(Double coordX, Double coordY) {
+	public String siloMasCercano(Double coordX, Double coordY) {
 		int distanciaMasCorta = Integer.MAX_VALUE;
 		Silo siloMasCerca = null;
-		Punto origen = obtenerVertice(coordX, coordY);
+		Plantacion origen = (Plantacion) obtenerVertice(coordX, coordY);
 		for(Silo silo : silos()) {
+			if(silo.getRemanente() < origen.getProduccionMensual()) {
+				continue;
+			}
 			int distanciaSilo = distanciaMasCorta(indice(origen), indice(silo));
 			if(distanciaSilo == -1) {
 				continue;
@@ -302,6 +324,14 @@ public class Grafo {
 				siloMasCerca = silo;
 			}
 		}
-		return siloMasCerca;
+		
+		Lista<Punto> puntos = caminoMasCorto(indice(origen), indice(siloMasCerca));
+		String print = "";
+		for(Punto punto : puntos) {
+			print += punto.getCoordX() + ";" + punto.getCoordY()+"|";
+		}
+		
+		print = Validar.cortarUltimo(print);
+		return print;
 	}
 }

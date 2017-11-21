@@ -13,5 +13,7 @@ public class Plantacion extends Punto{
 	}
 
 
-
+	public int getProduccionMensual() {
+		return produccionMensual;
+	}
 }

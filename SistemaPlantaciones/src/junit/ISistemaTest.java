@@ -117,7 +117,6 @@ public class ISistemaTest {
 		assertEquals(Retorno.Resultado.ERROR_2, sis.registrarTramo(20.00, 20.00, 0.00, 0.00, 100).resultado);
 		assertEquals(Retorno.Resultado.OK, sis.registrarTramo(20.00, 20.00, 21.00, 22.00,100).resultado);
 		assertEquals(Retorno.Resultado.ERROR_3, sis.registrarTramo(20.00, 20.00, 21.00, 22.00,100).resultado);
-		
 	}
 
 	@Test
@@ -181,10 +180,10 @@ public class ISistemaTest {
 		
 		registrarPuntos();
 		
-		r = sis.rutaASiloMasCercano(-32.702193,-57.638238);
+		r = sis.rutaASiloMasCercano(-32.702193,-57.638238);	//Plantacion en YOUNG
 		assertEquals(Retorno.Resultado.OK, r.resultado);
-		assertEquals("-32.702193;-57.638238|-32.364862;-54.166551|-34.901113;-56.164531|-34.460719;-57.833910", r.valorString);
-		
+		assertEquals("-32.702193;-57.638238|-32.364862;-54.166551|-34.901113;-56.164531|-33.725648;-56.329281", r.valorString);
+		//YOUNG-MELO-MONTEVIDEO-SARANDI, COSTO 14
 	}
 
 	@Test
@@ -252,21 +251,21 @@ public class ISistemaTest {
 		sis.registrarCiudad("PUNTA DEL DIABLO", -34.042339,-53.547332);
 		sis.registrarPlantacion("VALIZAS", -34.336668,-53.793882,"1.111.111-0",1);
 
-		sis.registrarTramo(-32.364862,-54.166551	, -34.901113,-56.164531,  6); // 1-3
-		sis.registrarTramo(-32.364862,-54.166551	, -32.702193,-57.638238,  5); // 1-5
-		sis.registrarTramo(-32.364862,-54.166551	, -33.725648,-56.329281,  10); // 1-7
-		sis.registrarTramo(-32.364862,-54.166551	, -34.197913,-53.861754,  21); // 1-8
-		sis.registrarTramo(-32.364862,-54.166551	, -34.042339,-53.547332,  10); // 1-9
-		sis.registrarTramo(-33.520142,-56.904220	, -32.702193,-57.638238,  10); // 2-5
-		sis.registrarTramo(-33.520142,-56.904220	, -33.725648,-56.329281,  1891); // 2-7
-		sis.registrarTramo(-34.901113,-56.164531	, -34.460719,-57.833910,  2); // 3-4
-		sis.registrarTramo(-34.901113,-56.164531	, -33.725648,-56.329281,  3); // 3-7
-		sis.registrarTramo(-34.901113,-56.164531	, -34.197913,-53.861754,  1901); // 3-8
-		sis.registrarTramo(-34.460719,-57.833910	, -34.164144,-58.034204,  13); // 4-6
-		sis.registrarTramo(-34.460719,-57.833910	, -33.725648,-56.329281,  11); // 4-7
-		sis.registrarTramo(-32.702193,-57.638238	, -34.164144,-58.034204,  25); // 5-6
-		sis.registrarTramo(-34.164144,-58.034204	, -33.725648,-56.329281,  11); // 6-7
-		sis.registrarTramo(-34.042339,-53.547332	, -34.336668,-53.793882,  10); // 9-10
+		sis.registrarTramo(-32.364862,-54.166551	, -34.901113,-56.164531,  6); // MELO-MONTEVIDEO
+		sis.registrarTramo(-32.364862,-54.166551	, -32.702193,-57.638238,  5); // MELO-YOUNG
+		sis.registrarTramo(-32.364862,-54.166551	, -33.725648,-56.329281,  10); // MELO-SARANDI
+		sis.registrarTramo(-32.364862,-54.166551	, -34.197913,-53.861754,  21); // MELO-CASTILLOS
+		sis.registrarTramo(-32.364862,-54.166551	, -34.042339,-53.547332,  10); // MELO-PDD
+		sis.registrarTramo(-33.520142,-56.904220	, -32.702193,-57.638238,  10); // TRINIDAD-YOUNG
+		sis.registrarTramo(-33.520142,-56.904220	, -33.725648,-56.329281,  1891); // TRINIDAD-SARANDI
+		sis.registrarTramo(-34.901113,-56.164531	, -34.460719,-57.833910,  2); // MONTEVIDEO-COLONIA
+		sis.registrarTramo(-34.901113,-56.164531	, -33.725648,-56.329281,  3); // MONTEVIDEO-SARANDI
+		sis.registrarTramo(-34.901113,-56.164531	, -34.197913,-53.861754,  1901); // MONTEVIDEO-CASTILLOS
+		sis.registrarTramo(-34.460719,-57.833910	, -34.164144,-58.034204,  13); // COLONIA-CONCHILLAS
+		sis.registrarTramo(-34.460719,-57.833910	, -33.725648,-56.329281,  11); // COLONIA-SARANDI
+		sis.registrarTramo(-32.702193,-57.638238	, -34.164144,-58.034204,  25); // YOUNG-CONCHILLAS
+		sis.registrarTramo(-34.164144,-58.034204	, -33.725648,-56.329281,  11); // CONCHILLAS-SARANDI
+		sis.registrarTramo(-34.042339,-53.547332	, -34.336668,-53.793882,  10); // PDD-VALIZAS
 	}
 
 }

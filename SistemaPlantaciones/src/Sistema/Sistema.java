@@ -236,10 +236,9 @@ public class Sistema implements ISistema {
 		if(!mapa.existenCoordenadas(coordX, coordY)) {
 			ret.resultado = Resultado.ERROR_1;
 		} else {
-			String ruta = "";
-			Silo silo = mapa.siloMasCercano(coordX, coordY);
-			
+			String ruta = mapa.siloMasCercano(coordX, coordY);
 			ret.resultado = Resultado.OK;
+			ret.valorString = ruta;
 		}
 		
 		return ret;
