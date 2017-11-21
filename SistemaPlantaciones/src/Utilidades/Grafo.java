@@ -325,6 +325,10 @@ public class Grafo {
 			}
 		}
 		
+		if(siloMasCerca == null) {
+			return "";
+		}
+		
 		Lista<Punto> puntos = caminoMasCorto(indice(origen), indice(siloMasCerca));
 		String print = "";
 		for(Punto punto : puntos) {

@@ -237,8 +237,12 @@ public class Sistema implements ISistema {
 			ret.resultado = Resultado.ERROR_1;
 		} else {
 			String ruta = mapa.siloMasCercano(coordX, coordY);
-			ret.resultado = Resultado.OK;
-			ret.valorString = ruta;
+			if(ruta == "") {
+				ret.resultado = Resultado.ERROR_2;
+			} else {
+				ret.resultado = Resultado.OK;
+				ret.valorString = ruta;				
+			}
 		}
 		
 		return ret;
