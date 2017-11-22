@@ -332,7 +332,10 @@ public class Grafo {
 			print += punto.getCoordX() + ";" + punto.getCoordY()+"|";
 		}
 		
-		print = Validar.cortarUltimo(print);
+		if(print.length() > 0) {
+			print = Validar.cortarUltimo(print);
+		}
+		
 		return print;
 	}
 

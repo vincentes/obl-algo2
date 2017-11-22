@@ -9,7 +9,7 @@ public class SistemaPlantaciones {
 		//Pruebas:
 		
 				String sep ="";
-				for(int i=0; i<140;i++){
+				for(int i=0; i<30;i++){
 					sep+="*";
 				}
 				
