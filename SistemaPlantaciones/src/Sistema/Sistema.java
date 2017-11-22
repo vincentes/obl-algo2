@@ -252,7 +252,13 @@ public class Sistema implements ISistema {
 	public Retorno listadoDePlantacionesEnCiudad(Double coordX, Double coordY) {
 		Retorno ret = new Retorno();
 		
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
+		
+		if(!mapa.existenCoordenadas(coordX, coordY)) {
+			ret.resultado = Resultado.ERROR_1;
+		} else {
+			ret.resultado = Resultado.OK;
+			ret.valorString = mapa.plantacionesEnCiudad(coordX, coordY);
+		}
 		
 		return ret;
 	}

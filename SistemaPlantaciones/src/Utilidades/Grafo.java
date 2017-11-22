@@ -1,12 +1,9 @@
 package Utilidades;
 
-import java.util.Comparator;
-
 import dominio.Plantacion;
 import dominio.Punto;
 import dominio.Silo;
 import listas.Lista;
-import listas.ListaOrd;
 import listas.ListaSE;
 
 public class Grafo {
@@ -337,5 +334,73 @@ public class Grafo {
 		
 		print = Validar.cortarUltimo(print);
 		return print;
+	}
+
+	public String plantacionesEnCiudad(Double coordX, Double coordY) {
+		ListaSE<Plantacion> plants = new ListaSE<>();
+		Punto ori = obtenerVertice(coordX, coordY);
+		
+		int origen = indice(ori);
+		int[] dist = new int[tope];
+	    boolean[] vis = new boolean[tope];
+	    int[] ant = new int[tope];
+	    for(int i=0; i<tope; dist[i] = Integer.MAX_VALUE, ant[i++] = -1);
+	    
+	    dist[origen] = 0;
+	    vis[origen] = true;
+	    for(int i = 0; i < tope; i++) {
+	    	if(matAdy[origen][i].isExiste()) {
+	    		dist[i] = matAdy[origen][i].getPeso();
+	    		ant[i] = origen;
+	    	}
+	    }
+	    
+	    for(int k = 1; k < tope; k++) {
+	    	int min = Integer.MAX_VALUE;
+	    	int cand = -1;
+	    	for(int i = 0; i < tope; i++) {
+	    		if(dist[i] < min && !vis[i]) {
+	    			min = dist[i];
+	    			cand = i;
+	    		}
+	    	}
+	    
+	    	if(cand == -1) {
+	    		break;
+	    	}
+	    	
+	    	vis[cand] = true;
+	    	for(int i = 0; i < tope; i++) {
+	    		int pasoFinal = matAdy[cand][i].getPeso();
+	    		if(matAdy[cand][i].isExiste() && !vis[i] && dist[cand] + pasoFinal < dist[i]) {
+	    			dist[i] = dist[cand] + pasoFinal;
+	    			ant[i] = cand;
+	    		}
+	    	}
+	    }
+		
+		for(int i = 0; i < dist.length; i++) {
+			if(vec[i] instanceof Plantacion && dist[i] <= 20) {
+				plants.insertar((Plantacion) vec[i]);
+			}
+		}
+		
+		// TODO Auto-generated method stub
+		String s = "";
+		for(Plantacion p : plants) {
+			s += p.getStringCoord() + "|";
+		}
+		s = Validar.cortarUltimo(s);
+		return s;
+	}
+
+	private Lista<Plantacion> plantaciones() {
+		Lista<Plantacion> plantaciones = new ListaSE<Plantacion>();
+		for(int i = 0; i < vec.length; i++) {
+			if(vec[i] instanceof Plantacion) {
+				plantaciones.insertar((Plantacion) vec[i]);
+			}
+		}
+		return plantaciones;
 	}
 }

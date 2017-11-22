@@ -230,7 +230,7 @@ public class ISistemaTest {
 		sis.registrarProductor("5.555.555-0", "Fabian", "Esteban Quito 1234", "rigoberta@menchu.com", "099555555");
 		sis.registrarProductor("1.111.111-0", "Lucia", "Esteban Quito 1234", "rigoberta@menchu.com", "099111111");
 		sis.registrarProductor("6.666.666-0", "Gabriel", "Esteban Quito 1234", "rigoberta@menchu.com", "099666666");
-		
+	
 		r = sis.listadoProductores();
 		assertEquals(Retorno.Resultado.OK, r.resultado);
 		assertEquals("1.111.111-0;Lucia;099111111|2.222.222-0;Bruno;099222222|3.333.333-0;Nicolas;099333333|4.444.444-0;Ilan;099444444|5.555.555-0;Fabian;099555555|6.666.666-0;Gabriel;099666666", r.valorString);
