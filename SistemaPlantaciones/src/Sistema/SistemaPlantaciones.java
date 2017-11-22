@@ -196,19 +196,16 @@ public class SistemaPlantaciones {
 				System.out.println(sep);
 				System.out.println("Registramos Tramos:");
 				System.out.println(sep);
-				System.out.println("MONTEVIDEO -34.901113,-56.164531 / YOUNG -32.702193,-57.638238 / Peso 100");
-				System.out.println("(Datos correctos, se espera OK): " +
-						s.registrarTramo(-34.901113,-56.164531,-32.702193,-57.638238, 100).resultado.toString()
-						);
+				
 				System.out.println("");
 				System.out.println("MONTEVIDEO -34.901113,-56.164531 / SARANDI GRANDE -33.725648,-56.329281 / Peso 250");
 				System.out.println("(Datos correctos, se espera OK): " +
 						s.registrarTramo(-34.901113,-56.164531,-33.725648,-56.329281, 250).resultado.toString()
 						);
 				System.out.println("");
-				System.out.println("MONTEVIDEO -34.901113,-56.164531 / ISMAEL CORTINAS -33.9616565,-57.0951748 / Peso 250");
+				System.out.println("MONTEVIDEO -34.901113,-56.164531 / ISMAEL CORTINAS -33.9616565,-57.0951748 / Peso 15");
 				System.out.println("(Datos correctos, se espera OK): " +
-						s.registrarTramo(-34.901113,-56.164531,-33.9616565,-57.0951748, 250).resultado.toString()
+						s.registrarTramo(-34.901113,-56.164531,-33.9616565,-57.0951748, 15).resultado.toString()
 						);
 				System.out.println("");
 				System.out.println("CONCHILLAS -34.164144,-58.034204 / ISMAEL CORTINAS -33.9616565,-57.0951748 / Peso 250");
@@ -245,8 +242,64 @@ public class SistemaPlantaciones {
 				System.out.println("(Invertimos el sentido, ya existe tramo, se espera ERROR 3): " +
 						s.registrarTramo(-33.9616565,-57.0951748,-34.901113,-56.164531, 250).resultado.toString()
 						);
+				System.out.println("");
+				System.out.println("MONTEVIDEO -34.901113,-56.164531 / Test2 -34.901113,-56.164531 / Peso 120");
+				System.out.println("(No existe coordf, se espera ERROR 2): " +
+						s.registrarTramo(-34.901113,-56.164531,-15.0,-22.0,120).resultado.toString()
+						);
 				
+				System.out.println("");
+				System.out.println("ISMAEL CORTINAS -33.9616565,-57.0951748 / YOUNG -32.702193,-57.638238 / Peso 60");
+				System.out.println("(Datos correctos, se espera OK): " +
+					s.registrarTramo(-33.9616565,-57.0951748,-32.702193,-57.638238,60).resultado.toString()
+					);
+				System.out.println("");
+				System.out.println("VILLA DEL CARMEN, -33.2402962,-56.0255258 / TOLEDO -34.7383897,-56.1098602 / Peso 100");
+				System.out.println("(Datos correctos, se espera OK): " +
+					s.registrarTramo(-33.2402962,-56.0255258,-34.7383897,-56.1098602,100).resultado.toString()
+					);
+				System.out.println("");
+				System.out.println("YOUNG -32.702193,-57.638238 / VILLA DEL CARMEN, -33.2402962,-56.0255258 / Peso 60");
+				System.out.println("(Datos correctos, se espera OK): " +
+					s.registrarTramo(-32.702193,-57.638238,-33.2402962,-56.0255258,60).resultado.toString()
+					);
+				System.out.println("");
+				System.out.println("MONTEVIDEO -34.901113,-56.164531 / TOLEDO -34.7383897,-56.1098602 / Peso 100");
+				System.out.println("(Datos correctos, se espera OK): " +
+					s.registrarTramo(-34.901113,-56.164531,-34.7383897,-56.1098602,100).resultado.toString()
+					);
 				
+				System.out.println("");
+				System.out.println("ISMAEL CORTINAS -33.9616565,-57.0951748 / COLONIA, -34.460719,-57.83391 / Peso 60");
+				System.out.println("(Datos correctos, se espera OK): " +
+					s.registrarTramo(-33.9616565,-57.0951748,-34.460719,-57.83391,60).resultado.toString()
+					);
+				
+				System.out.println("");
+				System.out.println("ISMAEL CORTINAS -33.9616565,-57.0951748 / TRINIDAD -33.520142,-56.904220 / Peso 60");
+				System.out.println("(Datos correctos, se espera OK): " +
+					s.registrarTramo(-33.9616565,-57.0951748,-33.520142,-56.904220,60).resultado.toString()
+					);
+				System.out.println("");
+				System.out.println("VILLA DEL CARMEN, -33.2402962,-56.0255258 / SARANDI GRANDE -33.725648,-56.329281 / Peso 100");
+				System.out.println("(Datos correctos, se espera OK): " +
+					s.registrarTramo(-33.2402962,-56.0255258,-33.725648,-56.329281,100).resultado.toString()
+					);
+				System.out.println("");
+				System.out.println("SARANDI GRANDE -33.725648,-56.329281 / YOUNG -32.702193,-57.638238 / Peso 60");
+				System.out.println("(Datos correctos, se espera OK): " +
+					s.registrarTramo(-33.725648,-56.329281,-32.702193,-57.638238,60).resultado.toString()
+					);
+				System.out.println("");
+				System.out.println("SARANDI GRANDE -33.725648,-56.329281 / VILLA DEL CARMEN, -33.2402962,-56.0255258 / Peso 60");
+				System.out.println("(Datos correctos, se espera OK): " +
+					s.registrarTramo(-33.725648,-56.329281,-33.2402962,-56.0255258,60).resultado.toString()
+					);
+				System.out.println("");
+				System.out.println("SARANDI GRANDE -33.725648,-56.329281 / TRINIDAD -33.520142,-56.904220 / Peso 60");
+				System.out.println("(Datos correctos, se espera OK): " +
+					s.registrarTramo(-33.725648,-56.329281,-33.520142,-56.904220,60).resultado.toString()
+					);
 				
 				System.out.println(sep);
 				System.out.println("Borramos Tramos:");
@@ -314,7 +367,31 @@ public class SistemaPlantaciones {
 				System.out.println(sep);
 				System.out.println("Listado de plantaciones en ciudad:");
 				System.out.println(sep);
-				System.out.println("TODO\n");
+				System.out.println("MONTEVIDEO -34.901113,-56.164531");
+				System.out.println("(Coordenadas de MONTEVIDEO, no hay plantaciones a menos de 20KM, se espera OK): " +
+						s.listadoDePlantacionesEnCiudad(-34.901113, -56.164531).resultado.toString()
+						);
+				System.out.println("");
+				System.out.println("");
+				System.out.println("Registramos Plantación: JARDIN BOTANICO -34.8589873,-56.217556,550");
+				System.out.println("(Datos correctos, se espera OK): " +
+						s.registrarPlantacion("JARDIN BOTANICO", -34.8589873,-56.217556,"3.234.567-1",550).resultado.toString()
+						);
+				System.out.println("Registramos tramo: MONTEVIDEO -34.901113,-56.164531 / JARDIN BOTANICO -34.8589873,-56.217556 / Peso 10");
+				System.out.println("(Datos correctos, se espera OK): " +
+						s.registrarTramo(-34.901113,-56.164531,-34.8589873,-56.217556, 10).resultado.toString()
+						);
+				System.out.println("MONTEVIDEO -34.901113,-56.164531");
+				System.out.println("(Coordenadas de MONTEVIDEO, una plantación disponible, se espera OK): " +
+						s.listadoDePlantacionesEnCiudad(-34.901113, -56.164531).resultado.toString()
+						);
+				System.out.println("Retorno esperado:");
+				System.out.println("-34.8589873;-56.217556");
+				 
+				System.out.println("Retorno obtenido:");
+				System.out.println(s.listadoDePlantacionesEnCiudad(-34.901113, -56.164531).valorString);
+				
+				
 				
 				System.out.println(sep);
 				System.out.println("Listado de silos:");

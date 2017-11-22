@@ -390,7 +390,9 @@ public class Grafo {
 		for(Plantacion p : plants) {
 			s += p.getStringCoord() + "|";
 		}
-		s = Validar.cortarUltimo(s);
+		
+		if(s.length()>0)s = Validar.cortarUltimo(s);
+		
 		return s;
 	}
 

@@ -161,8 +161,7 @@ public class Sistema implements ISistema {
 		Retorno ret = new Retorno();
 		
 		Punto i = mapa.obtenerVertice(coordXi, coordYi);
-		//Estabas generando dos puntos con las mismas coordenadas?
-		//Punto y = mapa.obtenerVertice(coordXi, coordYi);
+		
 		Punto y = mapa.obtenerVertice(coordXf, coordYf);
 		
 		if(peso <= 0) {
@@ -183,8 +182,7 @@ public class Sistema implements ISistema {
 		Retorno ret = new Retorno();
 		
 		Punto i = mapa.obtenerVertice(coordXi, coordYi);
-		//Estabas generando dos puntos con las mismas coordenadas?
-		//Punto y = mapa.obtenerVertice(coordXi, coordYi);
+	
 		Punto y = mapa.obtenerVertice(coordXf, coordYf);
 		
 		if(!mapa.existenCoordenadas(coordXi, coordYi) || !mapa.existenCoordenadas(coordXf, coordYf)) {
